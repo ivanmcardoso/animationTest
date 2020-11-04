@@ -1,6 +1,7 @@
-import { Dimensions , Animated} from 'react-native';
+import { Dimensions , Animated, Platform} from 'react-native';
 import styled from 'styled-components/native';
 const {width, height} = Dimensions.get("window");
+export const ITEM_WIDTH = width*0.6;
 export const Container = styled.View`
     flex: 1;
     align-items:center;
@@ -83,5 +84,30 @@ export const MenuCard = styled(RoundedCard)`
     width: 46%;
     margin: 4% 0;
     height: 20%;
+
+`;
+
+
+export const MenuList = styled(Animated.FlatList).attrs({
+    horizontal: true,
+    decelerationRate: Platform.OS === 'ios' ? 0 : 0.7,
+    snapToInterval: ITEM_WIDTH,
+    snapToAlignment: 'start',
+    scrollEventThrottle: 16,
+    showsHorizontalScrollIndicator: false,
+})`
+`;
+
+export const MenuCardItem = styled(Animated.View)`
+    border-radius: 20px;
+    width: ${ITEM_WIDTH}px;
+    height: ${0.5*height}px;
+    margin-right: 40px;
+`;
+
+export const MenuCardTouchable = styled.TouchableOpacity`
+    flex:1;
+    border-radius: 20px;
+    background-color: #FF9000;
 
 `;
