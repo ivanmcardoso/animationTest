@@ -1,7 +1,7 @@
 import { Dimensions , Animated, Platform} from 'react-native';
 import styled from 'styled-components/native';
 const {width, height} = Dimensions.get("window");
-export const ITEM_WIDTH = width*0.6;
+export const ITEM_WIDTH = width*0.5;
 export const Container = styled.View`
     flex: 1;
     align-items:center;
@@ -10,7 +10,7 @@ export const Container = styled.View`
 
 `;
 
-export const Circle = styled(Animated.View)`
+export const Header = styled(Animated.View)`
     padding: 10% 0 8%;
     background-color: #ff9000;
     align-items:center;
@@ -31,10 +31,10 @@ export const MainContainer = styled.View`
 
 export const ContentContainer = styled.View`
     flex: 1;
-    padding: 8% 4% 0;
-    background-color: rgba(256, 256, 256, 0.87);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    padding: 8% 0;
+    background-color: #FFFFFF;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 `;
 
 export const ImageLogo = styled.Image`
@@ -46,6 +46,15 @@ const RoundedCard = styled(Animated.View)`
     border-radius: 10px;
     min-height: 15%;
 `; 
+
+export const WelcomeMessageText = styled(Animated.Text)`
+    font-family: 'Roboto Slab';
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    color: #828282;
+    margin-left: 20px;
+`;
 
 export const EmptyButton = styled.TouchableOpacity`
     border-radius: 10px;
@@ -83,7 +92,7 @@ export const MenuEmptyButton = styled(EmptyButton)`
 export const MenuCard = styled(RoundedCard)`
     width: 46%;
     margin: 4% 0;
-    height: 20%;
+    height: ${0.4*height}px;
 
 `;
 
@@ -101,13 +110,71 @@ export const MenuList = styled(Animated.FlatList).attrs({
 export const MenuCardItem = styled(Animated.View)`
     border-radius: 20px;
     width: ${ITEM_WIDTH}px;
-    height: ${0.5*height}px;
-    margin-right: 40px;
+    height: ${0.54*height}px;
+    margin: 0 20px ;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const Circle = styled(Animated.View)`
+    background-color: #FFFFFF;
+    height: ${0.36*width}px;
+    width: ${0.36*width}px;
+    border-radius: ${0.36*width}px;
+    border-color: #FF9000;
+    border-width:1px;
+    position: relative;
+    z-index:100;
+    justify-content:center;
+    align-items: center;
 `;
 
 export const MenuCardTouchable = styled.TouchableOpacity`
     flex:1;
     border-radius: 20px;
+    height: ${0.5*height}px;
+    width: 100%;
+`;
+export const MenuCardItemContainer = styled(Animated.View)`
+    flex:1;
+    border-radius: 20px;
     background-color: #FF9000;
+`;
 
+export const MenuCardItemContentContainer = styled.View`
+    flex:1;
+    justify-content: space-between;
+    padding: 0 8% 15%;
+`;
+
+export const BodyContainer = styled.View`
+
+`;
+export const MenuCardItemTitle = styled(Animated.Text)`
+    font-family: 'Roboto';
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-transform: capitalize;
+`;
+
+export const MenuCardItemText = styled(Animated.Text)`
+    font-family: 'Nunito';
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    color: #FFFFFF;
+
+`;
+
+export const FooterContainer = styled.View`
+    flex-direction:row;
+    justify-content: flex-end;
+`;
+
+export const OvalButton = styled(Animated.View)`
+    border-radius: ${width}px;
+    padding: 1% 4%;
+    background-color: #FFFFFF;
 `;
