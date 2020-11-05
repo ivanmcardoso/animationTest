@@ -6,9 +6,8 @@ import { Circle, Container, ImageLogo, MainText } from './styles';
 
 const {width, height} = Dimensions.get("window");
 
-const LandingPage: React.FC = () => {
+const LandingPage: React.FC = ({navigation}) => {
 
-    const navigation = useNavigation()
 
     const [mheight] = useState(new Animated.Value(0.25*height));
     const [mwidth] = useState(new Animated.Value(0.25*height));

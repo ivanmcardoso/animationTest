@@ -6,13 +6,14 @@ import ESLIcon from '../assets/imgs/ic_esl.svg'
 import ProductsIcon from '../assets/imgs/ic_products.svg'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { Header, Container, ContentContainer, Divider, EmptyButton, ImageLogo, InfoCard, ITEM_WIDTH, MainContainer, MainText, MenuCard, MenuCardItem, MenuCardTouchable, MenuContainer, MenuEmptyButton, MenuList, Circle, MenuCardItemContainer, MenuCardItemContentContainer, MenuCardItemTitle, MenuCardItemText, FooterContainer, OvalButton, WelcomeMessageText } from './styles';
+import { SharedElement } from 'react-navigation-shared-element';
 
 const {width, height} = Dimensions.get("window");
 
 
 
 
-const Home: React.FC = () => {
+const Home: React.FC = ({navigation}) => {
 
     const [mheight] = useState(new Animated.Value(height));
     const [borderRadius] = useState(new Animated.Value(width));
@@ -25,14 +26,16 @@ const Home: React.FC = () => {
       id: 1,
       type: "PRODUCTS",
       name: "Produtos",
-      text: "Cadastre e gerencie os produtos da sua loja "
+      text: "Cadastre e gerencie os produtos da sua loja ",
+      onPress: (item)=>navigation.navigate("Products", { item })
     },
-    {
-      id:2,
-      type: "LABELS",
-      name: "Etiquetas",
-      text: "Vincule e gerencie as suas etiquetas"
-    }
+    // {
+    //   id:2,
+    //   type: "LABELS",
+    //   name: "Etiquetas",
+    //   text: "Vincule e gerencie as suas etiquetas",
+    //   onPress: (item)=>navigation.navigate("Products",  { item })
+    // }
     ]
 
     useEffect(()=>{
@@ -206,10 +209,16 @@ const Home: React.FC = () => {
                           width: circleHeight,
                           transform: [{translateY: circleOffsetY}]
                         }}>
-                        {renderIcon(item.type)}
+                          <SharedElement
+                              id={`item.${item.id}.image`}
+                            >
+                                <ProductsIcon height={70} width={70} />
+                            </SharedElement>
+                        {/* {renderIcon(item.type)} */}
                       </Circle>
                       <MenuCardTouchable
                         activeOpacity={0.85}
+                        onPress={item.onPress}
                       >
                         <MenuCardItemContainer
                         style={{
@@ -217,12 +226,19 @@ const Home: React.FC = () => {
                         }}
                         >
                           <MenuCardItemContentContainer>
-                            <MenuCardItemTitle
-                              style={{
-                                fontSize: fontSizeTitle,
-                                paddingTop: Animated.multiply(circleHeight, 0.6)
-                              }}
-                            >{item.name}</MenuCardItemTitle>
+                           
+                            <SharedElement
+                              id={`item.${item.id}.title`}
+                            >
+
+                              <MenuCardItemTitle
+                                style={{
+                                  fontSize: fontSizeTitle,
+                                  paddingTop: Animated.multiply(circleHeight, 0.6)
+                                }}
+                              >{item.name}</MenuCardItemTitle>
+                            </SharedElement>
+
                             <MenuCardItemText
                             style={{
                               fontSize: Animated.multiply(fontSizeTitle, 0.5),
